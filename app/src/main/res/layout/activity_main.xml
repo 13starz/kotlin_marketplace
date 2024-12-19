@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#A2A2A2"
+    android:visibility="visible"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <!--юзернейм-->
+
+
+    <TextView
+        android:id="@+id/text_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Регистрация"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/user_login"
+        android:layout_width="355dp"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:hint="Логин"
+        android:inputType="text"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+<!--почта-->
+<!--    <EditText-->
+<!--        android:id="@+id/user_email"-->
+<!--        android:layout_width="355dp"-->
+<!--        android:layout_height="69dp"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Почта"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="@color/black" />-->
+<!--пароль-->
+    <EditText
+        android:id="@+id/user_pass"
+        android:layout_width="355dp"
+        android:layout_height="69dp"
+        android:ems="10"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <Button
+        android:id="@+id/button_reg"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Зарегистрироваться" />
+
+
+
+</LinearLayout>
