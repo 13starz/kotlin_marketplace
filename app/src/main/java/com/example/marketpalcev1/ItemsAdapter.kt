@@ -41,13 +41,13 @@ class ItemsAdapter(var items: List<Item>, var context: Context) :
             context.packageName
         )
 
+        val imagePath = context.filesDir.absolutePath + "/" + item.imageName;
 
         if(imageId != 0){
             holder.image.setImageResource(imageId)
         }
         else {
             //если имя не найдено среди drawable, то загружаем из внутреннего хранилища
-            val imagePath = context.filesDir.absolutePath + "/" + item.imageName;
             holder.image.setImageURI(Uri.fromFile(File(imagePath)));
         }
 
@@ -57,7 +57,9 @@ class ItemsAdapter(var items: List<Item>, var context: Context) :
             //передаем значения по ключу в другой класс
             intent.putExtra("itemDesc", item.desc)
             intent.putExtra("itemPrice", item.price.toString() + "$")
+//            intent.putExtra("imageName", item.imageName)
             intent.putExtra("imageId", imageId)
+            intent.putExtra("imagePath", imagePath)
             context.startActivity(intent)
         }
     }

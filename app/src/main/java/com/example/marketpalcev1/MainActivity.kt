@@ -55,6 +55,12 @@ class MainActivity : AppCompatActivity() {
                 val db = DbHelper(this, null)
                 db.addUser(user)
                 Toast.makeText(this, "Успешная регистрация!", Toast.LENGTH_SHORT).show()
+
+                val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE) // сохранение логина  пользователя прошедшего регистрацию
+                val editor = sharedPreferences.edit()
+                editor.putString("user_login", login)
+                editor.apply()
+
                 val intent = Intent(this, ItemsActivity::class.java)
                 startActivity(intent)
             }
