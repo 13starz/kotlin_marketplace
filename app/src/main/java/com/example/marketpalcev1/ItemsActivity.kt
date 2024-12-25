@@ -24,7 +24,7 @@ class ItemsActivity : AppCompatActivity() {
 //            insets
 
         itemsList = findViewById(R.id.itemsList)
-        addButton = findViewById(R.id.add_item_button)
+        addButton = findViewById(R.id.add_item_button);
         profileButton = findViewById(R.id.button_3)
 
         addButton.setOnClickListener{
@@ -35,6 +35,7 @@ class ItemsActivity : AppCompatActivity() {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
+
         loadItems()
     }
 

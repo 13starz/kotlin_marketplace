@@ -98,4 +98,10 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
         db.close()
         return itemsList
     }
+
+    fun deleteItem(itemId: Int) {
+        val db = this.writableDatabase
+        db.delete("items", "id = ?", arrayOf(itemId.toString()))
+        db.close()
+    }
 }

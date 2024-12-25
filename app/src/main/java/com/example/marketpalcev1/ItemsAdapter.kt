@@ -30,7 +30,6 @@ class ItemsAdapter(var items: List<Item>, var context: Context) :
     override fun getItemCount(): Int {
         return items.count()
     }
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val item = items[position]

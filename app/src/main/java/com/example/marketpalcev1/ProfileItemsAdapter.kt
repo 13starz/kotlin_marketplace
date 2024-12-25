@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import java.io.File
 
-class ProfileItemsAdapter(var items: List<Item>, var context: Context) :
+class ProfileItemsAdapter(var items: List<Item>, var context: Context, private val reloadItems: () -> Unit) :
     RecyclerView.Adapter<ProfileItemsAdapter.MyViewHolder>() {
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -46,7 +47,15 @@ class ProfileItemsAdapter(var items: List<Item>, var context: Context) :
 
 
         holder.deleteButton.setOnClickListener{
-            //TODO delete item
+            val db = DbHelper(context, null)
+            db.deleteItem(item.id)
+            reloadItems()
+            Toast.makeText(context, "Товар удален", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun updateItems(newItems: List<Item>){
+        items = newItems
+        notifyDataSetChanged()
     }
 }

@@ -49,6 +49,19 @@ class ProfileActivity : AppCompatActivity() {
         val userItems = allItems.filter { it.userLogin == userLogin }
 
         userItemsList.layoutManager = LinearLayoutManager(this)
-        userItemsList.adapter = ProfileItemsAdapter(userItems, this)
+        userItemsList.adapter = ProfileItemsAdapter(userItems, this){
+            reloadItems(userLogin)
+        }
+
+    }
+
+    private fun reloadItems(userLogin: String?){
+        if(userLogin == null || userLogin.isEmpty()) return;
+
+        val db = DbHelper(this, null)
+        val allItems = db.getItems();
+        val userItems = allItems.filter { it.userLogin == userLogin }
+
+        (userItemsList.adapter as ProfileItemsAdapter).updateItems(userItems)
     }
 }
