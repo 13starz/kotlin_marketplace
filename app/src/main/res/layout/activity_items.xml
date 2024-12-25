@@ -21,16 +21,6 @@
 <!--        android:textStyle="bold" />-->
 
 
-    <SearchView
-        android:id="@+id/idSV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:iconifiedByDefault="false"
-        android:padding="4dp"
-        android:queryHint="Поиск"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemsList"
         android:layout_width="match_parent"

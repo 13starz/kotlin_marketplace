@@ -21,9 +21,9 @@ class ItemsActivity : AppCompatActivity() {
         val itemsList: RecyclerView = findViewById(R.id.itemsList)
         val items = arrayListOf<Item>()
 
-        items.add(Item(1,"Sir Benni Miles", "Jacket", "Alaska", "Новое состояние", "S", 48, "sirbennimilesnewmonogramrapalaska"))
-        items.add(Item(2,"Calvin Klein", "Down Puffer", "Vintage", "Новое состояние", "L", 60, "calvinkleinvintagedownpuffer"))
-        items.add(Item(3,"Rocawear", "Olympic Jersey  ", "Vintage", "БУ", "L", 30, "rocawearolympic"))
+        items.add(Item(1,"Sir Benni Miles Alaska Jacket", 48, "sirbennimilesnewmonogramrapalaska"))
+        items.add(Item(2,"Calvin Klein Down Puffer", 60, "calvinkleinvintagedownpuffer"))
+        items.add(Item(3,"Rocawear Olympic Jersey", 30, "rocawearolympic"))
 
         itemsList.layoutManager = LinearLayoutManager(this)
         itemsList.adapter = ItemsAdapter(items, this)

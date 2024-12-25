@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         val userLogin: EditText = findViewById(R.id.user_login);
-//        val userEmail: EditText = findViewById(R.id.user_email);
         val userPass: EditText = findViewById(R.id.user_pass);
         val button: Button = findViewById(R.id.button_reg);
+        val userbutton: TextView = findViewById(R.id.user_reg);
         val linkToAuth: TextView = findViewById(R.id.text_reg)
         //нашли все поля (куда пользователь вводит какие-либо данные / нажимает на кнопку)
 
@@ -37,30 +37,21 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener{
             val login = userLogin.text.toString().trim();
-//            val email = userEmail.text.toString().trim();
             val pass = userPass.text.toString().trim(); // trim удаляет пробелы
-            var mistakesCounter: Int = 0
-//            if(login == "" || email == "" || pass == ""){
+            var isError: Boolean = false
             if(login == "" || pass == ""){
                 Toast.makeText(this, "Ошибка: пустое поле", Toast.LENGTH_SHORT).show()
-                mistakesCounter++
+                isError = true
             }
-            if(mistakesCounter == 0){
-//                val db1 = DbHelper(this, null)
-//                if (db1.emailIsUsed(email)){
-//                    mistakesCounter=1
-//                    Toast.makeText(this, "Ошибка: email занят", Toast.LENGTH_SHORT).show()
-//                }
+            if(!isError){
                 val db2 = DbHelper(this, null)
                 if (db2.loginIsUsed(login)){
-                    mistakesCounter=1
+                    isError = true
                     Toast.makeText(this, "Ошибка: логин занят", Toast.LENGTH_SHORT).show()
                 }
             }
-            if(mistakesCounter == 0){
-//              val user = User(login, email, pass)
-                val user = User(login,"nonemail", pass)
-
+            if(!isError){
+                val user = User(login, pass)
                 val db = DbHelper(this, null)
                 db.addUser(user)
                 Toast.makeText(this, "Успешная регистрация!", Toast.LENGTH_SHORT).show()

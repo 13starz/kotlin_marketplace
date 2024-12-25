@@ -9,7 +9,7 @@
     android:backgroundTint="#A2A2A2"
     android:visibility="visible"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".CompanyRegActivity" >
 
     <!--юзернейм-->
 
@@ -26,7 +26,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/user_login"
+        android:id="@+id/company_login"
         android:layout_width="355dp"
         android:layout_height="69dp"
         android:ems="10"
@@ -36,9 +36,9 @@
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black" />
-<!--пароль-->
+    <!--пароль-->
     <EditText
-        android:id="@+id/user_pass"
+        android:id="@+id/company_pass"
         android:layout_width="355dp"
         android:layout_height="69dp"
         android:ems="10"
@@ -50,7 +50,7 @@
         android:textColorHint="@color/black" />
 
     <Button
-        android:id="@+id/button_reg"
+        android:id="@+id/button_reg_company"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -59,7 +59,7 @@
 
 
     <TextView
-        android:id="@+id/user_reg"
+        android:id="@+id/company_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

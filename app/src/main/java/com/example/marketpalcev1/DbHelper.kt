@@ -11,10 +11,7 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
     //factory - класс-помощник для подключения к ДБ (? нужен тк может быть null)
     override fun onCreate(db: SQLiteDatabase?) {
         // в onCreate "создаём" всю базу данных
-        val query = "CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT NULL, " +
-                "login TEXT, " +
-                "email TEXT, " +
-                "pass TEXT)"
+        val query = "CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT NULL, login TEXT, pass TEXT)"
         // AUTOINCREMENT  - значение столбца будет автоматически увеличиваться при добавлении новой строки
         // PRIMARY KEY задает первичный ключ таблицы. Первичный ключ уникально идентифицирует строку в таблице
         // То есть у нас не может быть в таблице users более одной строки, где в столбце id было бы одно и то же значение.
@@ -35,7 +32,6 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
     fun addUser(user: User){
         val values = ContentValues() // объект, в который запишем значения, которые потом добавим в таблицу БД
         values.put("login", user.login) // в ключ "логин" подставляем введенный логин
-        values.put("email", user.email)
         values.put("pass", user.pass)
 
         val db = this.writableDatabase // обращаемся к нашей ДБ (writable - можем чтото записать)
@@ -53,14 +49,6 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
         // ставим позицию курсора на первую строку выборки
         // если в выборке нет строк, вернется false
         return userExists
-    }
-
-    fun emailIsUsed(email: String): Boolean{
-        val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM users WHERE email=?", arrayOf(email))
-        val emailExists = cursor.moveToFirst()
-        cursor.close()
-        return emailExists
     }
 
     fun loginIsUsed(login: String): Boolean{
