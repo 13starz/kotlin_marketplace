@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ItemsActivity : AppCompatActivity() {
     private lateinit var itemsList: RecyclerView
     private lateinit var addButton: Button
+    private lateinit var profileButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,10 +24,15 @@ class ItemsActivity : AppCompatActivity() {
 //            insets
 
         itemsList = findViewById(R.id.itemsList)
-        addButton = findViewById(R.id.add_item_button);
+        addButton = findViewById(R.id.add_item_button)
+        profileButton = findViewById(R.id.button_3)
 
         addButton.setOnClickListener{
             val intent = Intent(this, AddItemActivity::class.java)
+            startActivity(intent)
+        }
+        profileButton.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         loadItems()

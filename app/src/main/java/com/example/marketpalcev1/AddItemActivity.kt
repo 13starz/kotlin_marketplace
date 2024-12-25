@@ -97,9 +97,6 @@ class AddItemActivity : AppCompatActivity() {
             Toast.makeText(this, "Неверный формат цены", Toast.LENGTH_SHORT).show()
             return
         }
-        val item = Item(0, desc, priceInt, imageName) // 0 тк не имеет значения id в этом контексте
-        val db = DbHelper(this, null)
-        //TODO get user login from another class
 
         val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
         val userLogin = sharedPreferences.getString("user_login", "");
@@ -109,7 +106,11 @@ class AddItemActivity : AppCompatActivity() {
             return;
         }
 
-        db.addItem(item, userLogin!!)
+        val item = Item(0, desc, priceInt, imageName, userLogin!!) // 0 тк не имеет значения id в этом контексте
+        val db = DbHelper(this, null)
+        //TODO get user login from another class
+
+        db.addItem(item, userLogin)
 
         Toast.makeText(this, "Товар добавлен", Toast.LENGTH_SHORT).show()
         finish()

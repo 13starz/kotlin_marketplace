@@ -86,10 +86,11 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
         if (cursor.moveToFirst()) {
             do {
                 val id = cursor.getInt(0)
+                val userLogin = cursor.getString(1)
                 val desc = cursor.getString(2)
                 val price = cursor.getInt(3)
                 val imageName = cursor.getString(4)
-                val item = Item(id, desc, price, imageName)
+                val item = Item(id, desc, price, imageName, userLogin)
                 itemsList.add(item)
             } while (cursor.moveToNext())
         }

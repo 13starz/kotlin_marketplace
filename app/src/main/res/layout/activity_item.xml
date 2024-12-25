@@ -15,8 +15,7 @@
     <ImageView
         android:id="@+id/in_item_image"
         android:layout_width="match_parent"
-        android:layout_height="305dp"
-        android:scaleType="centerCrop"
+        android:layout_height="400dp"
         app:srcCompat="@drawable/rocawearolympic" />
 
 
