@@ -2,6 +2,7 @@ package com.example.marketpalcev1
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.io.File
 
 class ItemsAdapter(var items: List<Item>, var context: Context) :
     RecyclerView.Adapter<ItemsAdapter.MyViewHolder>() {
@@ -31,20 +33,30 @@ class ItemsAdapter(var items: List<Item>, var context: Context) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
+        val item = items[position]
+
         val imageId = context.resources.getIdentifier(
-            items[position].imageName,
+            item.imageName.substringBefore("."),
             "drawable",
             context.packageName
         )
 
-        holder.image.setImageResource(imageId)
+
+        if(imageId != 0){
+            holder.image.setImageResource(imageId)
+        }
+        else {
+            //если имя не найдено среди drawable, то загружаем из внутреннего хранилища
+            val imagePath = context.filesDir.absolutePath + "/" + item.imageName;
+            holder.image.setImageURI(Uri.fromFile(File(imagePath)));
+        }
 
         holder.btn.setOnClickListener{
             val intent = Intent(context, ItemActivity::class.java)
 
             //передаем значения по ключу в другой класс
-            intent.putExtra("itemDesc", items[position].desc)
-            intent.putExtra("itemPrice", items[position].price.toString() + "$")
+            intent.putExtra("itemDesc", item.desc)
+            intent.putExtra("itemPrice", item.price.toString() + "$")
             intent.putExtra("imageId", imageId)
             context.startActivity(intent)
         }

@@ -43,6 +43,12 @@ class AuthActivity : AppCompatActivity() {
 
                 if(isAuth){
                     Toast.makeText(this, "Вход совершён !", Toast.LENGTH_SHORT).show()
+
+                    val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE) // сохранение логина авторизовавшегося пользователя
+                    val editor = sharedPreferences.edit()
+                    editor.putString("user_login", login)
+                    editor.apply()
+
                     val intent = Intent(this, ItemsActivity::class.java)
                     startActivity(intent)
                 }

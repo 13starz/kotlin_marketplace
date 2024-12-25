@@ -1,6 +1,8 @@
 package com.example.marketpalcev1
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ItemsActivity : AppCompatActivity() {
+    private lateinit var itemsList: RecyclerView
+    private lateinit var addButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -18,12 +22,24 @@ class ItemsActivity : AppCompatActivity() {
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 //            insets
 
-        val itemsList: RecyclerView = findViewById(R.id.itemsList)
-        val items = arrayListOf<Item>()
+        itemsList = findViewById(R.id.itemsList)
+        addButton = findViewById(R.id.add_item_button);
 
-        items.add(Item(1,"Sir Benni Miles Alaska Jacket", 48, "sirbennimilesnewmonogramrapalaska"))
-        items.add(Item(2,"Calvin Klein Down Puffer", 60, "calvinkleinvintagedownpuffer"))
-        items.add(Item(3,"Rocawear Olympic Jersey", 30, "rocawearolympic"))
+        addButton.setOnClickListener{
+            val intent = Intent(this, AddItemActivity::class.java)
+            startActivity(intent)
+        }
+        loadItems()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadItems()
+    }
+
+    private fun loadItems(){
+        val db = DbHelper(this, null)
+        val items = db.getItems()
 
         itemsList.layoutManager = LinearLayoutManager(this)
         itemsList.adapter = ItemsAdapter(items, this)
