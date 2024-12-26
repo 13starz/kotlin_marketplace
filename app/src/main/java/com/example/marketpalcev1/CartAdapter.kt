@@ -45,7 +45,7 @@ class CartAdapter(private var items: List<Item>, private val context: Context, p
         holder.desc.text = item.desc
         holder.price.text = item.price.toString() + "$"
         holder.deleteButton.setOnClickListener {
-
+            CartManager.removeItem(item)
             reloadItems()
             Toast.makeText(context, "Товар удален из корзины", Toast.LENGTH_SHORT).show()
         }
