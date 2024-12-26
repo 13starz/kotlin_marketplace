@@ -12,7 +12,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import java.io.File
 
-class CartAdapter(private var items: List<Item>, private val context: Context, private val reloadItems: () -> Unit) :
+class CartAdapter(
+    private var items: List<Item>,
+    private val context: Context,
+    private val reloadItems: () -> Unit) :
     RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     class CartViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -46,6 +49,7 @@ class CartAdapter(private var items: List<Item>, private val context: Context, p
         holder.price.text = item.price.toString() + "$"
         holder.deleteButton.setOnClickListener {
             CartManager.removeItem(item)
+            updateItems(CartManager.cartItems)
             reloadItems()
             Toast.makeText(context, "Товар удален из корзины", Toast.LENGTH_SHORT).show()
         }

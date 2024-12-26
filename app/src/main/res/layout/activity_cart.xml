@@ -12,8 +12,17 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="624dp"
         android:layout_marginTop="30dp"
-
         />
+
+    <TextView
+        android:id="@+id/cartTotalPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Total: 0$"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 </LinearLayout>
