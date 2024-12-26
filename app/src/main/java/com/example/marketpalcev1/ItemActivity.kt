@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,7 +19,7 @@ import kotlin.text.substringBefore
 
 
 class ItemActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)                                              {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_item)
@@ -36,6 +37,7 @@ class ItemActivity : AppCompatActivity() {
         but.text = intent.getStringExtra("itemPrice")
         val imageId = intent.getIntExtra("imageId",0)
         val imagePath = intent.getStringExtra("imagePath")
+        val imageName = intent.getStringExtra("imageName")
 
         if(imageId != 0){
             image.setImageResource(imageId)
@@ -43,23 +45,18 @@ class ItemActivity : AppCompatActivity() {
         else if (imagePath != null){
             image.setImageURI(Uri.fromFile(File(imagePath)))
         }
-//        val imageName = intent.getIntExtra("imageName",0)
 
-//        if (imageName != null) {
-//            val imageId = resources.getIdentifier(
-//                imageName.toString().substringBefore("."),
-//                "drawable",
-//                packageName
-//            )
-//
-//            if (imageId != 0) {
-//                image.setImageResource(imageId)
-//            } else {
-//                val imagePath = filesDir.absolutePath + "/" + imageName;
-//                image.setImageURI(Uri.fromFile(File(imagePath)))
-//            }
-//            image.setImageResource(imageId)
-//        }
-
+        but.setOnClickListener{
+            val itemDesc = intent.getStringExtra("itemDesc")
+            val itemPrice = intent.getStringExtra("itemPrice")?.replace("$","")?.toIntOrNull() ?: 0
+            val itemName = intent.getStringExtra("imageName")
+            val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
+            val userLogin = sharedPreferences.getString("user_login", "") ?: ""
+            val itemToAdd = Item(0, itemDesc!!, itemPrice, itemName!!, userLogin )
+            CartManager.addItem(itemToAdd)
+            Toast.makeText(this, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
+        }
     }
+
+
 }

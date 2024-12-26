@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
                 editor.putString("user_login", login)
                 editor.apply()
 
+                CartManager.clearCart()
+
                 val intent = Intent(this, ItemsActivity::class.java)
                 startActivity(intent)
             }

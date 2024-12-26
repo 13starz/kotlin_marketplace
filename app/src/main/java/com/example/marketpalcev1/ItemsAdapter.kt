@@ -56,9 +56,10 @@ class ItemsAdapter(var items: List<Item>, var context: Context) :
             //передаем значения по ключу в другой класс
             intent.putExtra("itemDesc", item.desc)
             intent.putExtra("itemPrice", item.price.toString() + "$")
-//            intent.putExtra("imageName", item.imageName)
+            intent.putExtra("imageName", item.imageName)
             intent.putExtra("imageId", imageId)
             intent.putExtra("imagePath", imagePath)
+
             context.startActivity(intent)
         }
     }
